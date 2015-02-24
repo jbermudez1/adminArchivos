@@ -1,5 +1,7 @@
 <?php namespace AdminFiles\Http\Controllers;
 
+use AdminFiles\Helpers\AdminMenu;
+
 class HomeController extends Controller {
 
 	/*
@@ -30,7 +32,8 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('home');
+        $menu = AdminMenu::menu();
+		return view('admin.home.home',compact('menu'));
 	}
 
 }

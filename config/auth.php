@@ -28,7 +28,7 @@ return [
 	|
 	*/
 
-	'model' => 'AdminFiles\User',
+	'model' => 'AdminFiles\Models\User',
 
 	/*
 	|--------------------------------------------------------------------------

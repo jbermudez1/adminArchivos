@@ -13,9 +13,6 @@
 
 Route::get('/', 'HomeController@index');
 
-Route::get('/methods',function(){
-    return get_class_methods(new \AdminFiles\Models\Category());
-});
 
 Route::controllers([
 	'/' => 'Auth\AuthController'

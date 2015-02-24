@@ -1,0 +1,12 @@
+{
+  "Usuarios": {
+    "code"  : "003",
+    "route" : "users",
+    "icon"  : "users"
+  },
+  "Categorias": {
+    "code"  : "005",
+    "route" : "categories",
+    "icon"  : "list"
+  }
+}
