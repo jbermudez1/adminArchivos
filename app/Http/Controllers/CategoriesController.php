@@ -25,14 +25,16 @@ class CategoriesController extends CrudController
         if($data)
         {
             return FormX::make()
-                ->textarea('question','Pregunta:','Ingrese pregunta',$data->question)
-                ->textarea('answer','Respuesta:','Ingrese Respuesta',$data->answer);
+                ->hidden('id_user',$data->id_user)
+                ->input('name','Nombre:','Nombre',$data->name)
+                ->textarea('description','Descripcion:','Ingrese Descripcion',$data->description);
         }
         else
         {
             return FormX::make()
-                ->textarea('question','Pregunta:','Ingrese pregunta')
-                ->textarea('answer','Respuesta:','Ingrese Respuesta');
+                ->hidden('id_user',\Auth::id())
+                ->input('name','Nombre:','Nombre')
+                ->textarea('description','Respuesta:','Ingrese Descripcion');
         }
     }
 

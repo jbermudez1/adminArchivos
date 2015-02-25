@@ -35,7 +35,7 @@
 <div id="div-modal"></div>
 <script>
     $(function(){
-        CRUD.url_base = 'admin/faqs';
+        CRUD.url_base = 'categories';
         //validaron
         Helper.rules = {
             'name':{

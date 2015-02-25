@@ -9,9 +9,9 @@
 @stop
 
 @section('modal-body')
-    <form action="categories/create" id="form-create" method="POST" class="form-horizontal">
+    {!! Form::open(['url' => 'categories','id'=>'form-create','method' => 'POST','class'=>'form-horizontal']) !!}
         {!! $fields !!}
-    </form>
+    {!! Form::close() !!}
 @stop
 
 @section('modal-footer')

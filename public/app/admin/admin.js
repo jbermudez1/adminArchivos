@@ -27,7 +27,7 @@ var Admin = function() {
                     removeLinks();
                     Helper.blockPage();
                     context.app.swap('');
-                    context.$element().load($route + "/list",function(){
+                    context.$element().load($route,function(){
                         assignLinks('#/' + $route);
                         $('.tooltip').remove();
                         if($route!="monitor")

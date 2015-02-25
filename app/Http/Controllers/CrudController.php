@@ -1,7 +1,7 @@
 <?php namespace AdminFiles\Http\Controllers;
 
-use AdminFiles\Http\Requests;
 use AdminFiles\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use AdminFiles\Helpers\FunctionX;
 
 class CrudController extends Controller {
@@ -20,7 +20,7 @@ class CrudController extends Controller {
         $this->middleware('auth');
     }
 
-	public function getList()
+	public function index()
 	{
         $data = $this->repo->getAll();
         $fields = $this->fields();
@@ -33,7 +33,7 @@ class CrudController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function getCreate()
+	public function create()
 	{
         return view($this->root . '/' . $this->module . '/create');
 	}
@@ -43,11 +43,11 @@ class CrudController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function postCreate()
+	public function store(Request $request)
 	{
-        $data = FunctionX::validateData(Input::all());
+        $data = FunctionX::validateData($request->all());
 
-        $validator = Validator::make($data, $this->rules);
+        $validator = \Validator::make($data, $this->rules);
         $success = true;
         $message = "Registro guardado exitosamente";
         $record = null;
@@ -70,9 +70,9 @@ class CrudController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function getShow($id)
+	public function show(Request $request, $id)
 	{
-        $action = Input::get('action');
+        $action = $request->get('action');
         $data = $this->repo->findOrFail($id);
         if($action=='delete')
         {
@@ -91,7 +91,7 @@ class CrudController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function getEdit($id)
+	public function edit($id)
 	{
         $data = $this->repo->findOrFail($id);
         $fields = $this->fields($data);
@@ -104,13 +104,13 @@ class CrudController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function postEdit($id)
+	public function update(Request $request, $id)
 	{
         $record_old = $this->repo->findOrFail($id);
 
-        $data = FunctionX::validateData(Input::all());
+        $data = FunctionX::validateData($request->all());
         $this->updateRules($record_old);
-        $validator = Validator::make($data, $this->rules);
+        $validator = \Validator::make($data, $this->rules);
         $success = true;
         $message = "Registro guardado exitosamente";
         $record = null;
@@ -134,7 +134,7 @@ class CrudController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function postDelete($id)
+	public function destroy($id)
 	{
         $this->repo->delete($id);
         return ['success'=>'true','message'=>'Registro eliminado exitosamente'];

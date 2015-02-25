@@ -4,7 +4,7 @@ $('[data-toggle="tooltip"], .enable-tooltip').tooltip({container: 'body', animat
 $('#btn-save').click(function(e){
     if($('#form-create').valid()){
         $('#btn-save').prop('disabled',true);
-        CRUD.action(document.getElementById('form-create'), function(){
+        CRUD.action('#form-create', function(){
             setTimeout(function(){
                 $(window.$contenedor).load(CRUD.url_base,function(){
                     $('#modal-create').modal('hide');
@@ -25,7 +25,7 @@ $('.edit').click(function(e){
         $('#btn-edit').click(function(){
             $('#btn-edit').prop('disabled',true);
             if($('#form-edit').valid()) {
-                CRUD.action(document.getElementById('form-edit'), function () {
+                CRUD.action('#form-edit', function () {
                     setTimeout(function(){
                         $(window.$contenedor).load(CRUD.url_base, function () {
                             $('#modal-edit').modal('hide');
@@ -47,8 +47,8 @@ $('.delete').click(function(e){
         $('#modal-delete').modal({show:true});
         $('#btn-delete').click(function(){
             $('#btn-delete').prop('disabled',true);
-            CRUD.action(document.getElementById('form-delete'),function(){
-                $(window.$contenedor).load(CRUD.url_base,function(){
+            CRUD.action('#form-delete',function(){
+                $(window.$contenedor).load(CRUD.url_base ,function(){
                     $('#modal-delete').modal('hide');
                     $('.modal-backdrop').remove();
                 })

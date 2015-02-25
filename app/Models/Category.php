@@ -15,6 +15,7 @@ class Category extends Model {
     protected $table ='categories';
     protected $fillable = ['name','description','id_user'];
     protected $relations = ['user'];
+    public $timestamps = false;
 
     public function user()
     {

@@ -13,7 +13,8 @@
 
 Route::get('/', 'HomeController@index');
 
+Route::resource('categories','CategoriesController');
+
 Route::controllers([
-    'categories' => 'CategoriesController',
 	'account' => 'Auth\AuthController',
 ]);

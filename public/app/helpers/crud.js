@@ -67,17 +67,17 @@ var CRUD = function(){
         },
         action: function(form,callback){
             var data = this.prepareData(form);
+            form = $(form);
             $.ajax({
-                url: form.action,
+                url: form.prop('action'),
                 data: data,
                 cache: false,
                 contentType: false,
                 processData: false,
-                type: form.method,
+                type: form.prop('method'),
                 success: function(response){
                     console.log(response);
                     if(response) {
-                        form = $(form);
                         var alert = form.parent().parent().find('.alert');
                         if(response.success){
                             alert.removeClass('alert-danger').addClass('alert-success');
@@ -100,7 +100,9 @@ var CRUD = function(){
             });
         },
         show: function(div,url,action,callback){
-            $(div).load(this.url_base + '/' + url + '?action=' + action,callback);
+            var url =this.url_base + '/' + url + '?action=' + action;
+            console.log(url);
+            $(div).load(url,callback);
         }
     }
 }();
