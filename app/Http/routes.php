@@ -13,7 +13,7 @@
 
 Route::get('/', 'HomeController@index');
 
-
 Route::controllers([
-	'/' => 'Auth\AuthController'
+    'categories' => 'CategoriesController',
+	'account' => 'Auth\AuthController',
 ]);

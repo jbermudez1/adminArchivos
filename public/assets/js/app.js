@@ -90,7 +90,7 @@ var App = function() {
         $('.select-chosen').chosen({width: "100%"});
 
         // Initialize Select2
-        $('.select-select2').select2();
+        //$('.select-select2').select2();
 
         // Initialize Slider for Bootstrap
         $('.input-slider').slider();
@@ -553,6 +553,18 @@ var App = function() {
         },
         datatables: function() {
             dtIntegration(); // Datatables Bootstrap integration
+        },
+        initDT: function(selector) {
+            $(selector).dataTable({
+                "iDisplayLength": 10,
+                "aLengthMenu": [[5, 10, 20], [5, 10, 20]],
+                "bDestroy": true
+            });
+
+            return {
+                data: $(selector).dataTable(),
+                dataR: $(selector).DataTable()
+            }
         }
     };
 }();

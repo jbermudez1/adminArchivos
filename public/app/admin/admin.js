@@ -19,10 +19,6 @@ var Admin = function() {
 
     return {
         $contenedor : '#page',
-        $idarea:null,
-        $latitude: null,
-        $longitude: null,
-        $alerts: null,
         init: function() {
             $app = $.sammy(this.$contenedor, function() {
                 // Configure routes of Sammy
@@ -31,7 +27,7 @@ var Admin = function() {
                     removeLinks();
                     Helper.blockPage();
                     context.app.swap('');
-                    context.$element().load("admin/" + $route,function(){
+                    context.$element().load($route + "/list",function(){
                         assignLinks('#/' + $route);
                         $('.tooltip').remove();
                         if($route!="monitor")
@@ -62,42 +58,9 @@ var Admin = function() {
                 }
             });
 
-            $app.run('#/monitor');
+            $app.run('#/categories');
             App.datatables();
             window.$contenedor = Admin.$contenedor;
-
-            // Get Alerts
-            $.ajax({
-                url: 'admin/getAlerts',
-                type: 'POST',
-                dataType: 'json',
-                success: function(response){
-                    Admin.$alerts = response.data;
-                }
-            });
-
-            // Load Alerts
-            $('#alerts-list').load('admin/getAlerts',function(){
-                $('.alert-update').on('submit',function(e){
-                    var el = $(this);
-                    var id = el.prop('id');
-                    var parent = el.parents('.alert-base');
-                    CRUD.action(document.getElementById(id), function(response){
-                        if(response.success){
-                            Helper.alert('Exito',response.message,'success')
-                            //debugger;
-                            parent.find('.observation').text(el.find('[name=observation]').val());
-                            parent.find('.observation').fadeIn();
-
-                            //Remove form
-                            el.parent().remove();
-                        }else{
-                            Helper.alert('Error',response.message,'danger');
-                        }
-                    });
-                    e.preventDefault();
-                });
-            });
         }
     };
 }();

@@ -73,7 +73,7 @@
                 @endif
 
                 <!-- Login Form -->
-                <form  role="form" method="POST" action="/login" class="form-horizontal">
+                <form  role="form" method="POST" action="/account/login" class="form-horizontal">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                     <div class="form-group">

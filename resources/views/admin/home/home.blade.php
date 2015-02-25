@@ -17,9 +17,7 @@
                 <div id="page-content" class="monitor">
                     @include('admin.layout.preloader')
                     @include('admin.layout.preloader-div')
-                    <div id="page">
-
-                    </div>
+                    <div id="page"></div>
                 </div>
             </div>
         </div>
@@ -32,4 +30,10 @@
     <script src='/app/helpers/helper.js'></script>
     <script src='/app/admin/admin.js'></script>
     <script src='/app/helpers/crud.js'></script>
+
+    <script>
+        $(function(){
+            Admin.init();
+        });
+    </script>
 @stop
