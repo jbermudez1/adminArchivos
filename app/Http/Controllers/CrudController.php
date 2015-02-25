@@ -68,6 +68,7 @@ class CrudController extends Controller {
 	 * Display the specified resource.
 	 *
 	 * @param  int  $id
+     * @param  Request $request
 	 * @return Response
 	 */
 	public function show(Request $request, $id)
@@ -102,12 +103,12 @@ class CrudController extends Controller {
 	 * Update the specified resource in storage.
 	 *
 	 * @param  int  $id
+     * @param  Request $request
 	 * @return Response
 	 */
 	public function update(Request $request, $id)
 	{
         $record_old = $this->repo->findOrFail($id);
-
         $data = FunctionX::validateData($request->all());
         $this->updateRules($record_old);
         $validator = \Validator::make($data, $this->rules);

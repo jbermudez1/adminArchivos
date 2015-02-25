@@ -3,7 +3,7 @@
         <strong>{{ Auth::user()->first_name . ' ' . Auth::user()->last_name . ' ( ' . Auth::user()->username . ' )' }}</strong>
     </li>
     <li>
-        <a href="logout" class="logout">
+        <a href="account/logout" class="logout">
             <i class="fa fa-power-off fa-fw pull-right"></i>
             Cerrar Sesion
         </a>

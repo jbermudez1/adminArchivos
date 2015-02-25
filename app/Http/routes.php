@@ -14,6 +14,7 @@
 Route::get('/', 'HomeController@index');
 
 Route::resource('categories','CategoriesController');
+Route::resource('users','UserController');
 
 Route::controllers([
 	'account' => 'Auth\AuthController',

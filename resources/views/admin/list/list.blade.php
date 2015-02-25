@@ -1,7 +1,7 @@
 <div class="block full">
     <!-- Get Started Title -->
     <div class="block-title">
-        <h2 id="list-description">@section('list-description')Listado @show </h2>
+        <h2 id="list-description">@section('list-title')Listado @show </h2>
     </div>
     <!-- END Get Started Title -->
     @section('list-content')
