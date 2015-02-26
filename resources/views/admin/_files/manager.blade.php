@@ -13,11 +13,6 @@
             <!-- Custom files functionality is initialized in js/pages/appMedia.js -->
             <!-- Add the category value you want each link in .media-filter to filter out in its data-category attribute. Add the value 'all' to show all items -->
             <ul class="nav nav-pills nav-stacked nav-icons media-filter">
-                <li class="active">
-                    <a href="javascript:void(0)" data-category="0">
-                        <i class="fa fa-fw fa-folder text-primary icon-push"></i> <strong>Todos</strong>
-                    </a>
-                </li>
                 @foreach($categories as $key => $value)
                     <li>
                         <a href="javascript:void(0)" data-category="{{ $key }}">

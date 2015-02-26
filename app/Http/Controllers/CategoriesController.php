@@ -35,7 +35,7 @@ class CategoriesController extends CrudController
             return FormX::make()
                 ->hidden('id_user',\Auth::id())
                 ->input('name','Nombre:','Nombre')
-                ->textarea('description','Respuesta:','Ingrese Descripcion');
+                ->textarea('description','Descripcion:','Ingrese Descripcion');
         }
     }
 

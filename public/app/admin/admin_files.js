@@ -24,25 +24,15 @@ var Files = function() {
                     // Add the active class to the clicked link
                     $(this).parent().addClass('active');
 
-                    // If the value is 'all' hide the current visible items and show them all together, else hide them all and show only from the category we need
-                    if (showCategory === 0) {
-                        mediaItems
-                            .find('.media-items')
-                            .parent()
-                            .hide(0, function(){
-                                $(this).show(0);
-                            });
-                    } else {
-                        mediaItems
-                            .find('.media-items')
-                            .parent()
-                            .hide(0, function(){
-                                mediaItems
-                                    .find('[data-category="' + showCategory + '"]')
-                                    .parent('div')
-                                    .show(0);
-                            });
-                    }
+                    mediaItems
+                        .find('.media-items')
+                        .parent()
+                        .hide(0, function(){
+                            mediaItems
+                                .find('[data-category="' + showCategory + '"]')
+                                .parent('div')
+                                .show(0);
+                        });
                 }
             });
         }

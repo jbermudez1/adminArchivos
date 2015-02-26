@@ -4,7 +4,7 @@
             <a href="{{ action('FilesController@getDownload', $file->id) }}" class="btn btn-xs btn-success"><i class="fa fa-download"></i></a>
         </div>
         <div class="media-items-content">
-            <i class="fa fa-file-archive-o fa-5x text-{{ $color }}"></i>
+            <i class="fa fa-file-pdf-o fa-5x text-{{ $color }}"></i>
         </div>
         <h4>
             <strong>{!! $file->name !!}</strong>.{!! $file->type !!}<br>

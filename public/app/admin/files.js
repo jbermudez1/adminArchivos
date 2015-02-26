@@ -9,6 +9,7 @@ $(function(){
     $('#btn-save').click(function(e){
         if($('#form-create').valid()){
             $('#btn-save').prop('disabled',true);
+
             CRUD.action('#form-create', function(response){
                 setTimeout(function(){
                     $('#modal-create').modal('hide');
@@ -16,6 +17,11 @@ $(function(){
 
                     $('#list-files').append(response.div_file);
 
+                    // Clear form
+                    var form = $('#form-create');
+                    var alert = form.parent().parent().find('.alert');
+                    alert.hide();
+                    form.find('input').val('');
                 },1000)
                 $('#btn-save').prop('disabled',false);
             });
