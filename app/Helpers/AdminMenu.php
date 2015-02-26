@@ -42,6 +42,9 @@ class AdminMenu {
                 else
                 {
                     $item['route'] = $o['route'];
+                    $item['container'] = isset($o['container']) ? $o['container'] : '';
+                    $item['class'] = isset($o['class']) ? $o['class'] : '' ;
+
                     array_push($routes,$o['code']);
                 }
 

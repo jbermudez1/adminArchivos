@@ -10,10 +10,24 @@ use Faker\Factory as Faker;
  * Time: 13:31
  */
 
+
 class UserTableSeeder extends Seeder {
 
     public function run()
     {
-
+        $faker = Faker::create();
+        $userRepo = new UserRepo();
+        for($i=0; $i<10; $i++)
+        {
+            $username = strtolower($faker->userName);
+            $userRepo->create([
+                'username' => $username,
+                'password' => \Hash::make($username),
+                'first_name' => $faker->firstName,
+                'last_name' => $faker->lastName,
+                'enabled' => true,
+                'type' => 'user'
+            ]);
+        }
     }
 }

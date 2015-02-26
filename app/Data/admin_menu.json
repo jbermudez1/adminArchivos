@@ -1,12 +1,19 @@
 {
   "Usuarios": {
-    "code"  : "003",
+    "code"  : "001",
     "route" : "users",
     "icon"  : "users"
   },
   "Categorias": {
-    "code"  : "005",
+    "code"  : "002",
     "route" : "categories",
     "icon"  : "list"
+  },
+  "Archivos": {
+    "code"  : "003",
+    "route" : "files",
+    "icon"  : "files-o",
+    "container": "#page-content",
+    "class": "inner-sidebar-left"
   }
 }

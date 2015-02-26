@@ -5,15 +5,21 @@
  */
 
 var Admin = function() {
+    var working = false;
+
     var removeLinks = function() {
         $('.sidebar-nav').find('.active').removeClass('active');
     }
 
     var assignLinks = function (referencia) {
-        $link = $("a[href='" + referencia + "']");
+        var $link = $("a[href='" + referencia + "']");
         $link.addClass('active');
         $link.parents('li .menu').addClass('active');
     }
+
+    var $contenedor_default = "#page";
+    var $old_class = "";
+    var $old_container = "";
 
     var $app = null;
 
@@ -23,16 +29,33 @@ var Admin = function() {
             $app = $.sammy(this.$contenedor, function() {
                 // Configure routes of Sammy
                 this.get('#/:route',function(context) {
+                    if(working===true)
+                        return;
+
+                    working=true;
+
                     var $route = this.params['route'];
                     removeLinks();
                     Helper.blockPage();
                     context.app.swap('');
+
+                    var $link = $("a[href='#/" + $route + "']");
+                    if($link.data('container').length>0) {
+                        $old_class = $link.data('class');
+                        this.element_selector = $link.data('container');
+                        $(this.element_selector).addClass($old_class);
+                    } else {
+                        $(Admin.$contenedor).removeClass($old_class);
+                        this.element_selector = $contenedor_default;
+                    }
+
+                    Admin.$contenedor= this.element_selector;
+
                     context.$element().load($route,function(){
                         assignLinks('#/' + $route);
                         $('.tooltip').remove();
-                        if($route!="monitor")
-                            $(Admin.$contenedor).attr('style','');
                         Helper.unblockPage();
+                        working=false;
                     });
                 });
 

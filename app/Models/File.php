@@ -8,14 +8,13 @@
 
 namespace AdminFiles\Models;
 
-
 use Illuminate\Database\Eloquent\Model;
 
 class File extends Model {
 
     protected $table ='files';
     protected $fillable = ['name','type','route','count_views','id_category','id_user'];
-    protected $relations = ['category','user'];
+    public $relations = ['category','user'];
 
     public function category()
     {

@@ -24,7 +24,7 @@
                             </ul>
                         </li>
                     @else
-                        <li><a href="#/{{ $value["route"] }}"><i class="fa fa-{{ $value["icon"] }} sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">{{ $value["label"] }}</span></a></li>
+                        <li><a href="#/{{ $value["route"]}}" data-container="{{ $value["container"] }}" data-class="{{ $value["class"] }}"><i class="fa fa-{{ $value["icon"] }} sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">{{ $value["label"] }}</span></a></li>
                     @endif
                 @endforeach
             </ul>

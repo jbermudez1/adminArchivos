@@ -14,11 +14,16 @@ class Category extends Model {
 
     protected $table ='categories';
     protected $fillable = ['name','description','id_user'];
-    protected $relations = ['user'];
+    public $relations = ['user','files'];
     public $timestamps = false;
 
     public function user()
     {
         return $this->hasOne('AdminFiles\Models\User','id','id_user');
+    }
+
+    public function files()
+    {
+        return $this->hasMany('AdminFiles\Models\File','id_category','id');
     }
 }

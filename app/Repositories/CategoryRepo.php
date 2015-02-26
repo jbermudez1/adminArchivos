@@ -17,4 +17,10 @@ class CategoryRepo extends BaseRepo {
     {
         return new Category();
     }
+
+    public function getList()
+    {
+        return $this->getModel()
+                    ->lists('name','id');
+    }
 }

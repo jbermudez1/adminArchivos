@@ -12,7 +12,8 @@
 */
 
 Route::get('/', 'HomeController@index');
-
+Route::get('files','FilesController@index');
+// CRUD'S
 Route::resource('categories','CategoriesController');
 Route::resource('users','UserController');
 

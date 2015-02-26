@@ -18,12 +18,7 @@ abstract class BaseRepo implements BaseInterface {
 
     function __construct()
     {
-        if(property_exists($this->getModel(),'relations'))
-        {
             $this->relations = $this->getModel()->relations;
-        }
-
-
     }
 
     public function findOrFail($id)
@@ -82,7 +77,8 @@ abstract class BaseRepo implements BaseInterface {
     public function getWithRelations()
     {
         return $this->getModel()
-                    ->with($this->relations);
+                    ->with($this->relations)
+                    ->get();
     }
 
 
