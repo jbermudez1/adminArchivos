@@ -27,9 +27,11 @@ $('.edit').click(function(e){
             if($('#form-edit').valid()) {
                 CRUD.action('#form-edit', function () {
                     setTimeout(function(){
+                        Helper.blockPage();
                         $(window.$contenedor).load(CRUD.url_base, function () {
                             $('#modal-edit').modal('hide');
                             $('.modal-backdrop').remove();
+                            Helper.unblockPage();
                         })
                     },2000);
                     $('#btn-edit').prop('disabled',false);

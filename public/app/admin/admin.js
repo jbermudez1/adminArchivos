@@ -26,7 +26,7 @@ var Admin = function() {
         init: function() {
             $app = $.sammy(this.$contenedor, function() {
                 // Configure routes of Sammy
-                this.get('#/:route',function(context) {
+                this.get(':route',function(context) {
                     var $route = this.params['route'];
                     console.info('Get route ---> ' + $route);
                     removeLinks();
