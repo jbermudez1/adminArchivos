@@ -35,5 +35,5 @@
     <!-- END Stylesheets -->
 
     <!-- Modernizr (browser feature detection library) -->
-    <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    {!! HTML::script('/assets/js/vendor/modernizr-2.8.3.min.js') !!}
 </head>

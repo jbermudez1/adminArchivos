@@ -3,7 +3,7 @@
 use AdminFiles\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use AdminFiles\Http\Controllers\Auth\AuthenticateUsers;
 
 class AuthController extends Controller {
 
@@ -18,7 +18,7 @@ class AuthController extends Controller {
 	|
 	*/
 
-	use AuthenticatesAndRegistersUsers;
+	use AuthenticateUsers;
 
 	/**
 	 * Create a new authentication controller instance.
