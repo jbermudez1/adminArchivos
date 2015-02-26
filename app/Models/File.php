@@ -9,6 +9,7 @@
 namespace AdminFiles\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use AdminFiles\Helpers\FunctionX;
 
 class File extends Model {
 
@@ -26,4 +27,8 @@ class File extends Model {
         return $this->hasOne('AdminFiles\Models\Category','id','id_user');
     }
 
+    public function getDiffCreateAttribute()
+    {
+        return FunctionX::diffForHumans($this->created_at);
+    }
 }

@@ -26,12 +26,12 @@
     <!-- END Icons -->
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href='/css/app.css' />
-    <link rel="stylesheet" href='/assets/css/plugins.css' />
-    <link rel="stylesheet" href='/assets/css/main.css' />
-    <link rel="stylesheet" href='/assets/css/themes.css' />
-    <link rel="stylesheet" href='/assets/css/themes/flat.css' />
-
+    {!! HTML::style('/css/app.css') !!}
+    {!! HTML::style('/assets/css/plugins.css') !!}
+    {!! HTML::style('/assets/css/main.css') !!}
+    {!! HTML::style('/assets/css/themes.css') !!}
+    {!! HTML::style('/assets/css/themes/flat.css') !!}
+    {!! HTML::style('/css/app2.css') !!}
     <!-- END Stylesheets -->
 
     <!-- Modernizr (browser feature detection library) -->

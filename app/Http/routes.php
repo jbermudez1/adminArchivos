@@ -12,11 +12,13 @@
 */
 
 Route::get('/', 'HomeController@index');
-Route::get('files','FilesController@index');
+Route::get('/denied','HomeController@denied');
+Route::get('manager','FilesController@index');
 // CRUD'S
 Route::resource('categories','CategoriesController');
 Route::resource('users','UserController');
 
 Route::controllers([
 	'account' => 'Auth\AuthController',
+    'manager' => 'FilesController'
 ]);

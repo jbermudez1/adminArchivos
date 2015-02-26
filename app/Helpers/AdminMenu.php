@@ -19,40 +19,27 @@ class AdminMenu {
         if(file_exists($menu)) {
             $options = json_decode(file_get_contents($menu), true);
             foreach($options as $n => $o) {
-                $item = [
-                    'label' => $n,
-                    'icon'  => $o['icon'],
-                ];
+                $add = true;
+                if(array_key_exists('type',$o))
+                    $add = (\Auth::user()->type == $o['type']);
 
-                if(array_key_exists('children',$o))
+                if($add)
                 {
-                    $childrens = array();
-                    foreach($o['children'] as $n2 => $children)
-                    {
-
-                            array_push($childrens, [
-                                'label' => $n2,
-                                'route' => $children['route']
-                            ]);
-                            array_push($routes,$children['code']);
-                    }
-
-                    $item['childrens'] = $childrens;
-                }
-                else
-                {
-                    $item['route'] = $o['route'];
-                    $item['container'] = isset($o['container']) ? $o['container'] : '';
-                    $item['class'] = isset($o['class']) ? $o['class'] : '' ;
+                    $item = [
+                        'label' => $n,
+                        'icon'  => $o['icon'],
+                        'route' => $o['route'],
+                        'container' => isset($o['container']) ? $o['container'] : '',
+                        'class' => isset($o['class']) ? $o['class'] : ''
+                    ];
 
                     array_push($routes,$o['code']);
-                }
-
-
-                array_push($items, $item );
+                    array_push($items, $item );
                 }
             }
-
+        }
+        // Add routes to session
+        \Session::push('routes',$routes);
         return $items;
     }
 

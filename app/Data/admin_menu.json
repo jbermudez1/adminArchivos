@@ -2,16 +2,18 @@
   "Usuarios": {
     "code"  : "001",
     "route" : "users",
-    "icon"  : "users"
+    "icon"  : "users",
+    "type"  : "administrator"
   },
   "Categorias": {
     "code"  : "002",
     "route" : "categories",
-    "icon"  : "list"
+    "icon"  : "list",
+    "type"  : "administrator"
   },
   "Archivos": {
     "code"  : "003",
-    "route" : "files",
+    "route" : "manager",
     "icon"  : "files-o",
     "container": "#page-content",
     "class": "inner-sidebar-left"

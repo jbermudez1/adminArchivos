@@ -17,7 +17,7 @@ class CrudController extends Controller {
 
     function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('laraguard');
     }
 
 	public function index()

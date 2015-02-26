@@ -5,8 +5,6 @@
  */
 
 var Admin = function() {
-    var working = false;
-
     var removeLinks = function() {
         $('.sidebar-nav').find('.active').removeClass('active');
     }
@@ -29,11 +27,6 @@ var Admin = function() {
             $app = $.sammy(this.$contenedor, function() {
                 // Configure routes of Sammy
                 this.get('#/:route',function(context) {
-                    if(working===true)
-                        return;
-
-                    working=true;
-
                     var $route = this.params['route'];
                     removeLinks();
                     Helper.blockPage();
@@ -55,7 +48,6 @@ var Admin = function() {
                         assignLinks('#/' + $route);
                         $('.tooltip').remove();
                         Helper.unblockPage();
-                        working=false;
                     });
                 });
 
@@ -81,7 +73,7 @@ var Admin = function() {
                 }
             });
 
-            $app.run('#/categories');
+            $app.run('#/manager');
             App.datatables();
             window.$contenedor = Admin.$contenedor;
         }

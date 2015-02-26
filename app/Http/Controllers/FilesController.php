@@ -8,19 +8,26 @@
 
 namespace AdminFiles\Http\Controllers;
 
+use Illuminate\Http\Request;
 use AdminFiles\Repositories\CategoryRepo;
 use AdminFiles\Repositories\FileRepo;
+use AdminFiles\Helpers\FormX;
+use AdminFiles\Helpers\UploadX;
 use Illuminate\Database\Eloquent\Collection;
 
 class FilesController extends Controller {
     protected $module = '_files';
     protected $categoryRepo;
-    protected $fileRepo;
+    protected $repo;
+    protected $rules = array(
+        'name' => 'required',
+        'id_category' => 'required|numeric|min:1'
+    );
 
     function __construct(CategoryRepo $categoryRepo,FileRepo $fileRepo)
     {
         $this->categoryRepo = $categoryRepo;
-        $this->fileRepo = $fileRepo;
+        $this->repo = $fileRepo;
         $this->middleware('auth');
     }
 
@@ -35,8 +42,62 @@ class FilesController extends Controller {
             $color_categories[$id] = $colors->random();
         }
 
-        $files = $this->fileRepo->getWithRelations();
+        $files = $this->repo->getWithRelations();
+        $fields = $this->fields();
 
-        return view('admin.' . $this->module . '.manager',compact('color_categories','categories','files'));
+        return view('admin.' . $this->module . '.manager',compact('color_categories','categories','files','fields'));
+    }
+
+    public function fields()
+    {
+        return FormX::make()
+            ->input('name','Nombre','Nombre:')
+            ->select('id_category','Categoria:',$this->categoryRepo->getList())
+            ->file('file','Archivo');
+    }
+
+    public function postUpload(Request $request)
+    {
+        $data = $request->all();
+        $success = true;
+        $message = "Registro guardado exitosamente";
+        $record = null;
+        if(!$request->hasFile('file'))
+        {
+            return [
+                'message' => 'Debe elegir un archivo',
+                'success' => false
+            ];
+        }
+
+        $validator = \Validator::make($data,$this->rules);
+
+        if($validator->passes())
+        {
+            $data['id_user'] = \Auth::id();
+            $record = $this->repo->create($data);
+            $file = UploadX::uploadFile($request->file('file'),'files',$record->id);
+            $record->route = $file['url'];
+            $record->type = $file['extension'];
+            $record->save();
+            $div_file = (string) view('admin.' . $this->module . '.file',[
+                'file' => $record,
+                'color' => 'muted'
+            ]);
+
+            return compact('success','message','record','div_file');
+        }
+        else
+        {
+            $success=false;
+            $message = $validator->messages();
+            return compact('success','message','record');
+        }
+    }
+
+    public function getDownload($id)
+    {
+        $file = $this->repo->findOrFail($id);
+        return UploadX::downloadFile($file->route,$file->name . '.' . $file->type);
     }
 }

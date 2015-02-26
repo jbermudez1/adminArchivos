@@ -9,7 +9,7 @@
 @stop
 
 @section('modal-body')
-    {!! Form::open(['url' => 'files','id'=>'form-create','method' => 'POST','class'=>'form-horizontal']) !!}
+    {!! Form::open(['url' => 'manager/upload','id'=>'form-create','method' => 'POST','class'=>'form-horizontal']) !!}
     {!! $fields !!}
     {!! Form::close() !!}
 @stop

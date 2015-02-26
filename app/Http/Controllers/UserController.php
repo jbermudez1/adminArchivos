@@ -19,6 +19,7 @@ class UserController extends CrudController {
 
     function __construct(UserRepo $userRepo)
     {
+        parent::__construct();
         $this->repo = $userRepo;
     }
 

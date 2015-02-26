@@ -62,6 +62,12 @@ class FormX {
         return $this;
     }
 
+    public function file_image($name,$label,$src='',$class='primary')
+    {
+        $this->body .= (string) view('admin.forms.file_image',compact('name','src','label','class'));
+        return $this;
+    }
+
     public function __toString()
     {
         return (string) view('admin.forms.build',

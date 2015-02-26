@@ -27,6 +27,7 @@ class Kernel extends HttpKernel {
 		'auth' => 'AdminFiles\Http\Middleware\Authenticate',
 		'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
 		'guest' => 'AdminFiles\Http\Middleware\RedirectIfAuthenticated',
+        'laraguard' => 'CGross\Laraguard\Middleware\Permission',
 	];
 
 }

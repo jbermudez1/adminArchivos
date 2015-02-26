@@ -6,7 +6,7 @@
         <!-- Filter -->
         <div class="block-section">
             <h4 class="inner-sidebar-header">
-                <a href="javascript:void(0)" class="btn btn-xs btn-default pull-right"><i class="fa fa-plus"></i></a>
+                <a href="#modal-create" class="btn btn-xs btn-default pull-right" data-toggle="modal"><i class="fa fa-plus"></i></a>
                 Categorias
             </h4>
             <!-- Filter by Type links -->
@@ -21,7 +21,7 @@
                 @foreach($categories as $key => $value)
                     <li>
                         <a href="javascript:void(0)" data-category="{{ $key }}">
-                            <i class="fa fa-fw fa-folder text-{{ $color_categories[$key] }} icon-push"></i> <strong>{{ $value }}</strong>
+                            <i data-category_id = "{{ $key }}" data-color="{{ $color_categories[$key] }}" class="fa fa-fw fa-folder text-{{ $color_categories[$key] }} icon-push"></i> <strong>{{ $value }}</strong>
                         </a>
                     </li>
                 @endforeach
@@ -36,32 +36,22 @@
 
 <!-- Media Box Content -->
 <!-- Add the category value for each item in its data-category attribute (for the filter functionality to work) -->
-<div class="row media-filter-items">
+<div id="list-files" class="row media-filter-items">
     @foreach($files as $file )
-        <div class="col-sm-4 col-lg-3">
-            <div class="media-items animation-fadeInQuick2" data-category="{{ $file->id_category }}">
-                <div class="media-items-options text-right">
-                    <a href="javascript:void(0)" class="btn btn-xs btn-success"><i class="fa fa-download"></i></a>
-                </div>
-                <div class="media-items-content">
-                    <i class="fa fa-file-archive-o fa-5x text-{{ $color_categories[$file->id_category] }}"></i>
-                </div>
-                <h4>
-                    <strong>{!! $file->name !!}</strong>.{!! $file->type !!}<br>
-                    <small>{!! $file->category->name !!}</small><br/>
-                    <small>3 hours ago</small>
-                </h4>
-            </div>
-        </div>
+        @include('admin._files.file',[
+            'file' => $file,
+            'color' => $color_categories[$file->id_category]
+        ])
     @endforeach
 </div>
 
-@include('admin._files.upload')
+@include('admin._files.upload',compact('fields'))
 
 <!-- END Media Box Content -->
 {!! HTML::script('app/admin/admin_files.js') !!}
+{!! HTML::script('app/admin/files.js') !!}
 <script>
     $(function(){
         Files.init();
-    })
+    });
 </script>

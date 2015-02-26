@@ -17,6 +17,7 @@ class CategoriesController extends CrudController
     protected $module = '_categories';
     public function __construct(CategoryRepo $categoryRepo)
     {
+        parent::__construct();
         $this->repo = $categoryRepo;
     }
 

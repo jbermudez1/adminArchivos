@@ -1,0 +1,20 @@
+defaultNoPermissionRoute: /denied
+debug: true;
+controllerActionPermissions:
+  administrator:
+    - "*@*"
+  guest:
+    - "Home@index"
+  user:
+    - "Files@*"
+customPermissions:
+    customPermission:
+        - /Controller/
+    secCust:
+        - /Blubb/
+testing:
+    appEnv: acceptance
+    debug: true
+    defaultPermissions: null
+    temporaryPermissions: ''
+    temporaryRequestCounter: 0

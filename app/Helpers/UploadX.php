@@ -11,21 +11,21 @@ namespace AdminFiles\Helpers;
 use Illuminate\Support\Facades\File;
 
 class UploadX {
-    public static  function uploadFile($file,$folder){
-        $name = $file->getClientOriginalName();
-
+    public static  function uploadFile($file,$folder,$name){
+        $extension = $file->getClientOriginalExtension();
         // Verify if directory exists
-        if (! is_dir($folder))
+        if (!is_dir($folder))
         {
             // Create directory
             $oldmask = umask(0);
             mkdir($folder, 0777);
             umask($oldmask);
         }
-        $url = $folder . '/' . $name;
+
+        $url = $folder . '/' . $name . '.' . $extension;
         if (File::copy($file,$url))
         {
-            return $url;
+            return compact('url','extension');
         }
         else
         {
@@ -33,10 +33,10 @@ class UploadX {
         }
     }
 
-    public function downloadFile($file,$name){
+    public static function downloadFile($file,$name){
         $file = public_path() . '/' . $file;
         $headers = array();
-        return Response::download($file,$name,$headers);
+        return response()->download($file,$name,$headers);
     }
 
     public static function deleteFile($url)

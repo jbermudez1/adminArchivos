@@ -44,6 +44,19 @@ var CRUD = function(){
                 return fr.readAsDataURL(file);
             }
         },
+        uploadFile: function(e) {
+            var file, fr, holder,label,input;
+            file = e.target.files[0];
+            input = $(this).parent().parent().parent().find('input[type=text]');
+            label = $(e.target).val().replace(/\\/g, '/').replace(/.*\//, '');
+            if (file) {
+                fr = new FileReader();
+                fr.onloadend = function(file) {
+                    input.val(label);
+                };
+                return fr.readAsDataURL(file);
+            }
+        },
         prepareData: function(form) {
             var data, fields;
             data = new FormData();

@@ -58,5 +58,5 @@
 
     })
 </script>
-<script src="app/helpers/crud_operate.js"></script>
+{!! HTML::script('app/helpers/crud_operate.js') !!}
 @stop
