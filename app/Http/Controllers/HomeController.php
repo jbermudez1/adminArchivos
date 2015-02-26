@@ -35,6 +35,9 @@ class HomeController extends Controller {
         $menu = AdminMenu::menu();
 		return view('admin.home.home',compact('menu'));
 	}
-    
 
+    public function denied()
+    {
+        return view('errors.denied');
+    }
 }
