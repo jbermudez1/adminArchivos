@@ -23,8 +23,8 @@ $('.edit').click(function(e){
         Helper.unblockPage();
         $('#modal-edit').modal({show:true});
         $('#btn-edit').click(function(){
-            $('#btn-edit').prop('disabled',true);
             if($('#form-edit').valid()) {
+                $('#btn-edit').prop('disabled',true);
                 CRUD.action('#form-edit', function () {
                     setTimeout(function(){
                         Helper.blockPage();

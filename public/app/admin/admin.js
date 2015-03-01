@@ -19,6 +19,57 @@ var Admin = function() {
 
     return {
         $contenedor : '#page',
+        form_password: function() {
+            $('#btn-open-password').click(function(e){
+                $('#modal-password').modal({show:true});
+                var form = $('#form-password');
+                form.find('input').not(':hidden').val('');
+
+                var alert = form.parent().parent().find('.alert');
+                alert.hide();
+                e.preventDefault();
+            });
+
+            // Validate form password
+            Helper.rules = {
+                'password':{
+                    required : true
+                },
+                'new-password'  : {
+                    required  : true,
+                    minlength: 5
+                },
+                'new-password-confirm' : {
+                    equalTo: "#new-password"
+                }
+            };
+            Helper.messages = {
+                'password':{
+                    required: 'Debe ingresar la contraseña actual'
+                },
+                'new-password': {
+                    required: 'Debe ingresar la nueva contraseña',
+                    minlength: "Debe tener al menos 5 caracteres"
+                },
+                'new-password-confirm' : {
+                    'equalTo' : 'Debe ser igual a la contraseña nueva'
+                }
+            }
+            Helper.validate('#form-password');
+
+            // Configure event to button change
+            $('#btn-password').click(function(){
+                if($('#form-password').valid()) {
+                    $('#btn-password').prop('disabled',true);
+                    CRUD.action('#form-password', function () {
+                        $('#btn-password').prop('disabled',false);
+                        setTimeout(function(){
+                            $('#modal-password').modal('hide');
+                        },1500)
+                    });
+                }
+            });
+        },
         init: function() {
             $app = $.sammy(this.$contenedor, function() {
                 // Configure routes of Sammy
@@ -50,6 +101,7 @@ var Admin = function() {
 
             $app.run('#/manager');
             App.datatables();
+            Admin.form_password();
             window.$contenedor = Admin.$contenedor;
         }
     };

@@ -10,6 +10,7 @@ namespace AdminFiles\Http\Controllers;
 
 use AdminFiles\Repositories\UserRepo;
 use AdminFiles\Helpers\FormX;
+use Illuminate\Http\Request;
 
 class UserController extends CrudController {
     protected $rules = array(
@@ -51,4 +52,38 @@ class UserController extends CrudController {
                 ->checkbox('enabled','Activo:');
         }
     }
+
+    public function change_password(Request $request)
+    {
+        // Get user active
+        $user = $this->repo->findOrFail(\Auth::id());
+
+        if($user)
+        {
+            $data = $request->all();
+            $success = true;
+            $message = "Contraseña actualizada exitosamente";
+
+            // Validate data
+            $validator = \Validator::make($data, [
+                'password' => 'required',
+                'new-password' => 'required|min:5',
+                'new-password-confirm' => 'required|same:new-password'
+            ]);
+
+            if($validator->passes())
+            {
+                $data['password'] = \Hash::make($data['new-password']);
+                $this->repo->update($user,$data);
+            }
+            else
+            {
+                $success = false;
+                $message = "Algunos campos son requeridos";
+            }
+
+            return compact('success','message');
+        }
+    }
+
 }

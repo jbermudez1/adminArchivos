@@ -17,6 +17,7 @@
                 <div id="page-content" class="monitor">
                     @include('admin.layout.preloader')
                     @include('admin.layout.preloader-div')
+                    @include('admin.home.change_password')
                     <div id="page"></div>
                 </div>
             </div>
