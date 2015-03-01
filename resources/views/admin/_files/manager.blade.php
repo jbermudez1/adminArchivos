@@ -6,7 +6,7 @@
         <!-- Filter -->
         <div class="block-section">
             <h4 class="inner-sidebar-header">
-                <a href="#modal-create" class="btn btn-xs btn-default pull-right" data-toggle="modal"><i class="fa fa-plus"></i></a>
+                <a id="btn-open-create" href="#" class="btn btn-xs btn-default pull-right" ><i class="fa fa-plus"></i></a>
                 Categorias
             </h4>
             <!-- Filter by Type links -->

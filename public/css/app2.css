@@ -13,3 +13,11 @@
     cursor: inherit;
     display: block;
 }
+
+.absolute {
+    position: absolute !important;
+}
+
+.relative {
+    position: relative !important;
+}

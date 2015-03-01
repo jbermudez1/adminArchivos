@@ -18,4 +18,10 @@ class UserRepo extends BaseRepo {
     {
         return new User();
     }
+
+    public function create(array $data)
+    {
+        $data['password'] = \Hash::make($data['password']);
+        return $this->getModel()->create($data);
+    }
 }

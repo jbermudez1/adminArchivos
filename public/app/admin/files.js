@@ -5,23 +5,28 @@ $(function(){
     Helper.validate('#form-create');
     $('#form-create input[type=file]').on('change',CRUD.uploadFile);
 
-    // Functions to create
+    // Events to buttons
+    $('#btn-open-create').click(function(e){
+        $('#modal-create').modal({show:true});
+        var form = $('#form-create');
+        form.find('input').not(':hidden').val('');
+
+        var alert = form.parent().parent().find('.alert');
+        alert.hide();
+        e.preventDefault();
+    });
+
     $('#btn-save').click(function(e){
         if($('#form-create').valid()){
             $('#btn-save').prop('disabled',true);
-
+            Helper.blockDiv('#modal-create  .modal-content');
             CRUD.action('#form-create', function(response){
+                Helper.unblockDiv('#modal-create  .modal-content');
                 setTimeout(function(){
                     $('#modal-create').modal('hide');
                     $('.modal-backdrop').remove();
 
                     $('#list-files').append(response.div_file);
-
-                    // Clear form
-                    var form = $('#form-create');
-                    var alert = form.parent().parent().find('.alert');
-                    alert.hide();
-                    form.find('input').val('');
                 },1000)
                 $('#btn-save').prop('disabled',false);
             });

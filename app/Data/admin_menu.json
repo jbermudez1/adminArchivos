@@ -14,8 +14,6 @@
   "Archivos": {
     "code"  : "003",
     "route" : "manager",
-    "icon"  : "files-o",
-    "container": "#page-content",
-    "class": "inner-sidebar-left"
+    "icon"  : "files-o"
   }
 }
