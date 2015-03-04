@@ -41,6 +41,7 @@
 </div>
 
 @include('admin._files.upload',compact('fields'))
+<div id="div-delete"></div>
 
 <!-- END Media Box Content -->
 {!! HTML::script('app/admin/admin_files.js') !!}

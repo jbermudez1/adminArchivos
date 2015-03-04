@@ -16,6 +16,40 @@ $(function(){
         e.preventDefault();
     });
 
+    $('.delete-file').click(function(e){
+        var id = $(this).data('id');
+        Helper.blockPage();
+        $('#div-delete').load('manager/delete/' + id,function(){
+            $('#modal-delete').modal({show:true});
+            Helper.unblockPage();
+
+            $('#btn-delete').click(function(e) {
+                $('#btn-delete').prop('disabled',true);
+                Helper.blockDiv('#modal-delete  .modal-content');
+                CRUD.action('#form-delete', function(response){
+                    Helper.unblockDiv('#modal-delete  .modal-content');
+                    setTimeout(function(){
+                        $('#modal-delete').modal('hide');
+                        $('.modal-backdrop').remove();
+
+                        if(response.success) {
+                            $('#file-'+id).fadeOut();
+                            setTimeout(function(){
+                                $('#file-'+id).remove();
+                            },1000);
+                        }
+                    },1000)
+                    $('#btn-delete').prop('disabled',false);
+                });
+
+                e.preventDefault();
+            });
+        });
+
+        e.preventDefault();
+    });
+
+
     $('#btn-save').click(function(e){
         if($('#form-create').valid()){
             $('#btn-save').prop('disabled',true);

@@ -72,6 +72,7 @@ class FilesController extends Controller {
 
         $validator = \Validator::make($data,$this->rules);
 
+
         if($validator->passes())
         {
             $data['id_user'] = \Auth::id();
@@ -93,6 +94,28 @@ class FilesController extends Controller {
             $message = $validator->messages();
             return compact('success','message','record');
         }
+    }
+
+    public function postDelete(Request $request)
+    {
+        $id = $request->get('id');
+        $file = $this->repo->findOrFail($id);
+        if($file)
+        {
+            UploadX::deleteFile($file->route);
+            $file->delete();
+
+            return ['message'=>'Archivo eliminado exitosamente','success'=>true];
+        }
+        else
+        {
+            return ['message'=>'No se pudo procesar tu peticion','success'=>false];
+        }
+    }
+
+    public function getDelete($id)
+    {
+        return view('admin._files.delete',compact('id'));
     }
 
     public function getDownload($id)

@@ -1,7 +1,7 @@
 @extends('admin.layout.modal')
 
 @section('modal-title')
-    Eliminar Categoria
+    Eliminar Archivo
 @stop
 
 @section('modal-id')
@@ -9,8 +9,9 @@
 @stop
 
 @section('modal-body')
-    {!! Form::open(['route' => ['categories.destroy', $data->id],'id'=>'form-delete','method' => 'DELETE','class'=>'form-horizontal']) !!}
-    ¿ Desea eliminar el registro ?
+    {!! Form::open(['url' => 'manager/delete','id'=>'form-delete','method' => 'POST','class'=>'form-horizontal']) !!}
+        {!! Form::hidden('id',$id) !!}
+        ¿Esta seguro que desea eliminarlo?
     {!! Form::close() !!}
 @stop
 
