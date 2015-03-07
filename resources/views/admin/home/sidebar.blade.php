@@ -37,7 +37,7 @@
      <!-- Sidebar Extra Info -->
     <div id="sidebar-extra-info" class="sidebar-content sidebar-nav-mini-hide">
         <div class="text-center">
-            <small>Created with <i class="fa fa-heart text-danger"></i> by <a href="http://www.proyeccione.com" target="_blank">Proyeccione</a></small><br>
+            <small>Created with <i class="fa fa-heart text-danger"></i> by <a href="#" target="_blank">Adsum</a></small><br>
             <small></span> &copy; <a href="#" target="_blank">Administrador de Archivos</a></small>
         </div>
     </div>

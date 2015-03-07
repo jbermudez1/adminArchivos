@@ -105,7 +105,7 @@
 
             <!-- Footer -->
             <footer class="text-muted text-center animation-pullUp">
-                <small><span id="year-copy"></span> &copy; <a href="http://www.proyeccione.com" target="_blank">Proyeccione</a></small>
+                <small><span id="year-copy"></span> &copy; <a href="#" target="_blank">Adsum</a></small>
             </footer>
             <!-- END Footer -->
         </div>
