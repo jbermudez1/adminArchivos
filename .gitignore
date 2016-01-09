@@ -1,6 +1,10 @@
 vendor
-public/files
 
 *.pdf
 
 *.docx
+
+.idea
+
+# OSX Files
+.DS_Store

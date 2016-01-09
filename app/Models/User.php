@@ -34,7 +34,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function getPermissions()
     {
-        return [$this->type];
+        return [
+        	$this->type
+        ];
     }
 
 }
