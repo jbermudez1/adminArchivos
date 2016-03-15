@@ -36,7 +36,7 @@ class AllTables extends Migration {
         Schema::create('files',function(Blueprint $table){
             $table->increments('id');
             $table->string('name');
-            $table->string('type',10);
+            $table->string('type', 10);
             $table->string('route');
 
             $table->integer('count_views')->unsigned();
