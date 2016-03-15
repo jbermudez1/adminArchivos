@@ -8,3 +8,7 @@ vendor
 
 # OSX Files
 .DS_Store
+
+.env
+
+docker-compose.yml
