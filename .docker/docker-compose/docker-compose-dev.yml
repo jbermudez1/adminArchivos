@@ -7,14 +7,6 @@ db:
     ports:
         - "3306:3306"
 
-redis:
-    image: tutum/redis
-    restart: always
-    environment:
-        REDIS_PASS: "TaipakTog0"
-    ports:
-        - "6379:6379"
-
 data:
     image: dylanlindgren/docker-laravel-data
     volumes:
@@ -28,7 +20,6 @@ php:
         - data
     links:
         - db:db
-        - redis:redis
     privileged: true
 
 nginx:
@@ -55,5 +46,4 @@ artisan:
         - data
     links:
         - db:db
-        - redis:redis
     privileged: true
