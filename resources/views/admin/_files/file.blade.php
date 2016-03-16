@@ -7,7 +7,7 @@
             @endif
         </div>
         <div class="media-items-content">
-            <i class="fa fa-file-pdf-o fa-5x text-{{ $color }}"></i>
+            <i class="fa fa-file-o fa-5x text-{{ $color }}"></i>
         </div>
         <h4>
             <strong>{!! $file->name !!}</strong>.{!! $file->type !!}<br>
